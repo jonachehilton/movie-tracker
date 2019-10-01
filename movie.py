@@ -1,9 +1,6 @@
 """..."""
 
 
-# TODO: Create your Movie class in this file
-
-
 class Movie:
     def __init__(self, title="", year=0, category="", is_watched=False):
         self.title = title
@@ -19,3 +16,4 @@ class Movie:
 
     def unwatch(self):
         self.is_watched = False
+

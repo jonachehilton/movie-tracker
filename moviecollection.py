@@ -1,9 +1,11 @@
 """..."""
 
 
-# TODO: Create your MovieCollection class in this file
-
-
 class MovieCollection:
     """..."""
-    pass
+    guitars = []
+
+    movie_to_add = Movie()
+
+
+

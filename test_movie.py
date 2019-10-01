@@ -16,9 +16,21 @@ def run_tests():
 
     # Test initial-value movie
     initial_movie = Movie("Thor: Ragnarok", 2017, "Comedy", True)
-    # TODO: Write tests to show this initialisation works
+    test_movie = Movie("Blood Diamond", 2006, "Drama", False)
 
-    # TODO: Add more tests, as appropriate, for each method
+    print(initial_movie)
 
+    initial_movie.unwatch()
+    print("{} unwatch() - Expected False. Got {}".format(initial_movie, initial_movie.is_watched))
 
+    initial_movie.watch()
+    print("{} watch() - Expected True. Got {}\n".format(initial_movie, initial_movie.is_watched))
+
+    print(test_movie)
+
+    test_movie.watch()
+    print("{} watch() - Expected True. Got {}".format(test_movie, test_movie.is_watched))
+
+    test_movie.unwatch()
+    print("{} unwatch() - Expected False. Got {}".format(test_movie, test_movie.is_watched))
 run_tests()
