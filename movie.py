@@ -5,19 +5,17 @@
 
 
 class Movie:
-    def __init__(self, title="", year=0, category="", watched=False):
+    def __init__(self, title="", year=0, category="", is_watched=False):
         self.title = title
         self.year = year
         self.category = category
-        self.watched = watched
+        self.is_watched = is_watched
 
     def __str__(self):
         return "{} ({}) from {}".format(self.title, self.category, self.year)
 
-    def is_watched(self):
-        if self.watched:
-            return "this movie is watched"
+    def watch(self):
+        self.is_watched = True
 
-
-
-
+    def unwatch(self):
+        self.is_watched = False
