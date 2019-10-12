@@ -44,3 +44,12 @@ class MovieCollection:
             if movie.is_watched:
                 count_of_required_movies += 1
         return count_of_required_movies
+
+    def save_movies(self, file_name):
+        movie_file = open(file_name, "w")
+        for i, movie in enumerate(self.movies):
+            if self.movies[i].is_watched:
+                self.movies[i].is_watched = "w"
+            else:
+                self.movies[i].is_watched = "u"
+            movie_file.write("{},{},{},{}\n".format(movie.title, movie.year, movie.category, movie.is_watched))
