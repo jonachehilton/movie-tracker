@@ -1,11 +1,11 @@
 """..."""
 
+from movie import Movie
+from operator import attrgetter
 
 class MovieCollection:
     """..."""
-    guitars = []
 
-    movie_to_add = Movie()
-
-
+    def __init__(self):
+        self.movies = []
 
