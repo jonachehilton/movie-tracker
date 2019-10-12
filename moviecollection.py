@@ -20,3 +20,6 @@ class MovieCollection:
             movie_to_add = line.strip().split(",")
             self.movies.append(Movie(movie_to_add[0], movie_to_add[1], movie_to_add[2], movie_to_add[3]))
         movie_file.close()
+
+    def add_movie(self, movie):
+        self.movies.append(movie)
