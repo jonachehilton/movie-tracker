@@ -8,6 +8,7 @@ class Movie:
         self.category = category
         self.is_watched = is_watched
 
+
     def __str__(self):
         return "{} ({}) from {} {}".format(self.title, self.category, self.year, self.is_watched)
 

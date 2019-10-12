@@ -1,9 +1,9 @@
 """..."""
 
+from operator import attrgetter
+
 from movie import Movie
 
-
-# from operator import attrgetter
 
 class MovieCollection:
     """..."""
@@ -23,3 +23,7 @@ class MovieCollection:
 
     def add_movie(self, movie):
         self.movies.append(movie)
+
+    def sort(self, sort_choice):
+        self.movies.sort(key=attrgetter(sort_choice, "title"))
+
