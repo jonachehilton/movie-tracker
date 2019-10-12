@@ -30,3 +30,10 @@ class MovieCollection:
 
     def sort(self, sort_choice):
         self.movies.sort(key=attrgetter(sort_choice, "title"))
+
+    def get_number_of_watched_movies(self):
+        count_of_watched_movies = 0
+        for movie in self.movies:
+            if not movie.is_watched:
+                count_of_watched_movies += 1
+        return count_of_watched_movies
