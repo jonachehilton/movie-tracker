@@ -16,9 +16,13 @@ class MovieCollection:
 
     def load_movies(self, file_name):
         movie_file = open(file_name, "r")
-        for line in movie_file:
+        for i, line in enumerate(movie_file):
             movie_to_add = line.strip().split(",")
             self.movies.append(Movie(movie_to_add[0], movie_to_add[1], movie_to_add[2], movie_to_add[3]))
+            if self.movies[i].is_watched == "w":
+                self.movies[i].is_watched = True
+            else:
+                self.movies[i].is_watched = False
         movie_file.close()
 
     def add_movie(self, movie):
@@ -26,4 +30,3 @@ class MovieCollection:
 
     def sort(self, sort_choice):
         self.movies.sort(key=attrgetter(sort_choice, "title"))
-

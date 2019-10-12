@@ -10,7 +10,7 @@ class Movie:
 
 
     def __str__(self):
-        return "{} ({}) from {} {}".format(self.title, self.category, self.year, self.is_watched)
+        return "{} ({}) from {}. Watched: {}".format(self.title, self.category, self.year, self.is_watched)
 
     def watch(self):
         self.is_watched = True

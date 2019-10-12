@@ -37,11 +37,8 @@ def run_tests():
     print(movie_collection)
 
     print("Test sorting - watched:")
-    # movie_collection.sort("is_watched")
-    # print(movie_collection)
-
-
-
+    movie_collection.sort("is_watched")
+    print(movie_collection)
 
     # # TODO: Test saving movies (check CSV file manually to see results)
     #
