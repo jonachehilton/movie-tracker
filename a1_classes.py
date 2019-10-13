@@ -135,16 +135,6 @@ def watch_movie(movies):
             print("Invalid movie number")
 
 
-def check_all_movies_watched(movies):
-    """Checks if there are no more movies to watch and returns boolean value."""
-    total_movies_watch = 0
-    for movie in movies:
-        if movie[3] == WATCHED:
-            total_movies_watch += 1
-    if total_movies_watch == len(movies):
-        return True
-
-
 def convert_string_to_integer(movies):
     """Converts the year string's from the list into integers and returns the new list."""
     for movie in movies:
