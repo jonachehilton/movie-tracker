@@ -1,9 +1,9 @@
 """..."""
 
-from movie import Movie
+# from movie import Movie
 from moviecollection import MovieCollection
 
-from operator import itemgetter
+# from operator import itemgetter
 
 WATCHED = "w"
 UNWATCHED = "u"
@@ -11,17 +11,11 @@ UNWATCHED = "u"
 
 def main():
     """
-    The body which executes other functions in a particular order.
-    Contains a menu with four capabilities.
-    Displaying a movie list.
-    Adding to the movie list.
-    Watching a movie from the list.
-    Quitting the program.
     """
     MENU = "Menu:\nL - List movies\nA - Add new movie\nW - Watch a movie\nQ - Quit"
 
-    movies = load_movies()
-    movies = convert_string_to_integer(movies)
+    movie_collection = MovieCollection()
+    movie_collection.load_movies("movies.csv")
 
     print("Movies To Watch 1.0 - by Jonache Hilton\n{} movies loaded\n\n{}".format(len(movies), MENU))
     menu_choice = input(">>>").upper()
@@ -68,13 +62,6 @@ def main():
 def append_movie_to_list(movie_category, movie_name, movie_year, movies):
     movies.append([movie_name, movie_year, movie_category, UNWATCHED])
     print("{} ({} from {}) added to movie list".format(movie_name, movie_category, movie_year))
-
-
-def load_movies():
-    movie_file = open("movies.csv", "r+")
-    movies = [line.strip().split(",") for line in movie_file]
-    movie_file.close()
-    return movies
 
 
 def display_list(movies, width):
