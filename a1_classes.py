@@ -17,11 +17,11 @@ def main():
     movie_collection = MovieCollection()
     movie_collection.load_movies("movies.csv")
 
-    print("Movies To Watch 1.0 - by Jonache Hilton\n{} movies loaded\n\n{}".format(len(movies), MENU))
+    print("Movies To Watch 2.0 - by Jonache Hilton\n{} movies loaded\n\n{}".format(len(movie_collection.movies), MENU))
     menu_choice = input(">>>").upper()
     while menu_choice != "Q":
         if menu_choice == "L":
-            display_list(movies, calculate_dynamic_width(0, movies))
+            display_list(movie_collection.movies, calculate_dynamic_width(movie_collection.movies), movie_collection)
 
         elif menu_choice == "A":
             movie_name = ""
@@ -59,35 +59,34 @@ def main():
     save_movies(movies)
 
 
-def append_movie_to_list(movie_category, movie_name, movie_year, movies):
-    movies.append([movie_name, movie_year, movie_category, UNWATCHED])
-    print("{} ({} from {}) added to movie list".format(movie_name, movie_category, movie_year))
-
-
-def display_list(movies, width):
+def display_list(movies, width, movie_collection):
     """
     Prints out a list of the movies and their characteristics which is sorted by year.
     Additionally prints out how many movies have been watched and how many are yet to be watched.
     """
-    movies.sort(key=itemgetter(1, 0))
-    movies_not_watched = 0
     for i in range(0, len(movies)):
         star_value = " "
-        if movies[i][-1] == UNWATCHED:
+        if not movies[i].is_watched:
             star_value = "*"
-            movies_not_watched += 1
-        print("{:2}. {} {:{}} -  {:>4} ({})".format(i, star_value, movies[i][0], width, movies[i][1], movies[i][2]))
-    print("{} movies watched, {} movies still to watch".format(len(movies) - movies_not_watched, movies_not_watched))
+        print("{:2}. {} {:{}} -  {:>4} ({})".format(i, star_value, movies[i].title, width, movies[i].year,
+                                                    movies[i].category))
+    print("{} movies watched, {} movies still to watch".format(movie_collection.get_number_of_watched_movies(),
+                                                               movie_collection.get_number_of_required_movies()))
 
 
-def calculate_dynamic_width(column_number, movies):
+def calculate_dynamic_width(movies):
     """Returns the length of the longest movie name in the movie list."""
     dynamic_width = 0
-    for line in movies:
-        current_width = len(line[column_number])
+    for movie in movies:
+        current_width = len(str(movie.title))
         if current_width > dynamic_width:
             dynamic_width = current_width
     return dynamic_width + 1
+
+
+def append_movie_to_list(movie_category, movie_name, movie_year, movies):
+    movies.append([movie_name, movie_year, movie_category, UNWATCHED])
+    print("{} ({} from {}) added to movie list".format(movie_name, movie_category, movie_year))
 
 
 def check_string_error(string):
