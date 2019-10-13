@@ -1,6 +1,6 @@
 """..."""
 
-# from movie import Movie
+from movie import Movie
 from moviecollection import MovieCollection
 
 # from operator import itemgetter
@@ -41,7 +41,8 @@ def main():
                 movie_category = input(">>>")
                 is_valid_input = check_string_error(movie_category)
 
-            append_movie_to_list(movie_category, movie_name, movie_year, movies)
+            movie_to_add = Movie(movie_name, movie_year, movie_category, False)
+            movie_collection.add_movie(movie_to_add)
 
         elif menu_choice == "W":
             if check_all_movies_watched(movies):
@@ -82,11 +83,6 @@ def calculate_dynamic_width(movies):
         if current_width > dynamic_width:
             dynamic_width = current_width
     return dynamic_width + 1
-
-
-def append_movie_to_list(movie_category, movie_name, movie_year, movies):
-    movies.append([movie_name, movie_year, movie_category, UNWATCHED])
-    print("{} ({} from {}) added to movie list".format(movie_name, movie_category, movie_year))
 
 
 def check_string_error(string):
