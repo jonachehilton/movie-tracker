@@ -45,11 +45,11 @@ def main():
             movie_collection.add_movie(movie_to_add)
 
         elif menu_choice == "W":
-            if check_all_movies_watched(movies):
+            if movie_collection.get_number_of_watched_movies() == len(movie_collection.movies):
                 print("No more movies to watch!")
             else:
                 print("Enter the number of a movie to mark as watched")
-                watch_movie(movies)
+                watch_movie(movie_collection.movies)
         else:
             print("Invalid menu choice")
 
@@ -99,14 +99,14 @@ def check_integer_error():
     Prevents the program from crashing by try and excepting for a value error.
     Returns the integer when there are no errors.
     """
-    valid_input = False
-    while not valid_input:
+    is_valid_input = False
+    while not is_valid_input:
         try:
             integer = int(input(">>>"))
             while integer < 0:
                 print("Number must be >= 0")
                 integer = int(input(">>>"))
-            valid_input = True
+            is_valid_input = True
             return integer
         except ValueError:
             print("Invalid input; enter a valid number")
@@ -119,17 +119,18 @@ def watch_movie(movies):
     Checks whether the choice has already been watched and prints respectively if so.
     Changes the movies value to watched if it is chosen and not watched and prints the respective message.
     """
-    valid_input = False
-    while not valid_input:
+    is_valid_input = False
+    while not is_valid_input:
         try:
             chosen_movie_to_watch = int(check_integer_error())
-            if WATCHED in movies[chosen_movie_to_watch][-1]:
-                print("You have already watched", movies[chosen_movie_to_watch][0])
-                valid_input = True
+            if movies[chosen_movie_to_watch].is_watched:
+                print("You have already watched", movies[chosen_movie_to_watch])
+                is_valid_input = True
             else:
-                movies[chosen_movie_to_watch][-1] = WATCHED
-                print("{} from {} watched".format(movies[chosen_movie_to_watch][0], movies[chosen_movie_to_watch][1]))
-                valid_input = True
+                movies[chosen_movie_to_watch].watch()
+                print("{} from {} watched".format(movies[chosen_movie_to_watch].title,
+                                                  movies[chosen_movie_to_watch].year))
+                is_valid_input = True
         except IndexError:
             print("Invalid movie number")
 
