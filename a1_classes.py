@@ -56,8 +56,7 @@ def main():
         print(MENU)
         menu_choice = input(">>>").upper()
 
-    movies = convert_integer_to_string(movies)
-    save_movies(movies)
+    movie_collection.save_movies("movies.csv")
 
 
 def display_list(movies, width, movie_collection):
@@ -124,7 +123,7 @@ def watch_movie(movies):
         try:
             chosen_movie_to_watch = int(check_integer_error())
             if movies[chosen_movie_to_watch].is_watched:
-                print("You have already watched", movies[chosen_movie_to_watch])
+                print("You have already watched", movies[chosen_movie_to_watch].title)
                 is_valid_input = True
             else:
                 movies[chosen_movie_to_watch].watch()
@@ -133,29 +132,6 @@ def watch_movie(movies):
                 is_valid_input = True
         except IndexError:
             print("Invalid movie number")
-
-
-def convert_string_to_integer(movies):
-    """Converts the year string's from the list into integers and returns the new list."""
-    for movie in movies:
-        movie[1] = int(movie[1])
-    return movies
-
-
-def convert_integer_to_string(movies):
-    """Converts the year integer from the list into a string for the file and returns the new list."""
-    for movie in movies:
-        movie[1] = str(movie[1])
-    return movies
-
-
-def save_movies(movies):
-    """Writes the list back to the file with the relevant formatting."""
-    movie_file = open("movies.csv", "w")
-    for line in movies:
-        movie_file.write("{}\n".format(",".join(line)))
-    movie_file.close()
-    print("{} movies saved to {}".format(len(movies), movie_file.name))
 
 
 if __name__ == '__main__':
