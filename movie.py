@@ -8,7 +8,6 @@ class Movie:
         self.category = category
         self.is_watched = is_watched
 
-
     def __str__(self):
         return "{} ({}) from {}. Watched: {}".format(self.title, self.category, self.year, self.is_watched)
 
@@ -17,4 +16,3 @@ class Movie:
 
     def unwatch(self):
         self.is_watched = False
-
