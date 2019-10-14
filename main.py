@@ -40,6 +40,14 @@ class MoviesToWatchApp(App):
             temp_button.movie = movie
             self.root.ids.entries_box.add_widget(temp_button)
 
+    def press_entry(self, instance):
+        """"""
+        # Each button was given its own ".movie" object reference, so we can get it directly
+        # Update button text and label
+        movie = instance.movie
+        instance.text = str(movie)
+        self.status_text = "{} has been watched".format(movie.title)
+
 
 if __name__ == '__main__':
     MoviesToWatchApp().run()
