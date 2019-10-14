@@ -3,11 +3,6 @@
 from movie import Movie
 from moviecollection import MovieCollection
 
-# from operator import itemgetter
-
-WATCHED = "w"
-UNWATCHED = "u"
-
 
 def main():
     """
@@ -43,6 +38,7 @@ def main():
 
             movie_to_add = Movie(movie_name, movie_year, movie_category, False)
             movie_collection.add_movie(movie_to_add)
+            print("{} ({} from {}) added to movie list".format(movie_name, movie_category, movie_year))
 
         elif menu_choice == "W":
             if movie_collection.get_number_of_watched_movies() == len(movie_collection.movies):
@@ -64,6 +60,7 @@ def display_list(movies, width, movie_collection):
     Prints out a list of the movies and their characteristics which is sorted by year.
     Additionally prints out how many movies have been watched and how many are yet to be watched.
     """
+    movie_collection.sort("year")
     for i in range(0, len(movies)):
         star_value = " "
         if not movies[i].is_watched:
