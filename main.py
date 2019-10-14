@@ -10,12 +10,14 @@ from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
 from movie import Movie
-from moviecollection import MovieCollection
+
+
+# from moviecollection import MovieCollection
 
 
 class MoviesToWatchApp(App):
     """..."""
-    status_text = StringProperty
+    status_text = StringProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -42,11 +44,15 @@ class MoviesToWatchApp(App):
 
     def press_entry(self, instance):
         """"""
-        # Each button was given its own ".movie" object reference, so we can get it directly
+        # Each button was given its own ".guitar" object reference, so we can get it directly
         # Update button text and label
         movie = instance.movie
         instance.text = str(movie)
         self.status_text = "{} has been watched".format(movie.title)
+
+    def clear_widgets(self):
+        """Clear all of the widgets that are children of the "entries_box" layout widget."""
+        self.root.ids.entries_box.clear_widgets()
 
 
 if __name__ == '__main__':
