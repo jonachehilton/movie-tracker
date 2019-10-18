@@ -37,22 +37,31 @@ class MoviesToWatchApp(App):
         for movie in self.movies:
             # Create a button for each Movie object, specifying the text
             temp_button = Button(text=str(movie))
-            temp_button.bind(on_release=self.press_entry)
+            temp_button.bind(on_release=self.press_movie)
             # Store a reference to the guitar object in the button object
             temp_button.movie = movie
             self.root.ids.entries_box.add_widget(temp_button)
 
-    def press_entry(self, instance):
+    def press_movie(self, instance):
         """"""
-        # Each button was given its own ".guitar" object reference, so we can get it directly
+        # Each button was given its own ".movie" object reference, so we can get it directly
         # Update button text and label
         movie = instance.movie
         instance.text = str(movie)
-        self.status_text = "{} has been watched".format(movie.title)
+        if not movie.is_watched:
+            movie.watch()
+            watched_string = ""
+        else:
+            movie.unwatch()
+            watched_string = "You have watched"
+        self.status_text = "{} {}".format(watched_string, movie.title)
 
     def clear_widgets(self):
         """Clear all of the widgets that are children of the "entries_box" layout widget."""
         self.root.ids.entries_box.clear_widgets()
+
+    def clear_status_text(self):
+        self.status_text = ""
 
 
 if __name__ == '__main__':
