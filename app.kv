@@ -1,9 +1,45 @@
 BoxLayout:
     orientation: 'vertical'
     BoxLayout:
-        # this layout is populated with (button) widgets in app code
-        id: entries_box
-        orientation: 'vertical'
-    Label:
-        size_hint_y: 0.1
-        text: app.status_text
+        orientation: 'horizontal'
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.25
+            Label:
+                text: 'Sort by:'
+            Spinner:
+                text: 'hello'
+            Label:
+                text: 'Add New Movie...'
+            Label:
+                text: 'Title:'
+            TextInput:
+                id: 'title'
+                font_size: 10
+                multiline: False
+            Label:
+                text: 'Category:'
+            TextInput:
+                id: 'category'
+                font_size: 10
+                multiline: False
+            Label:
+                text: 'Year:'
+            TextInput:
+                id: 'year'
+                font_size: 10
+                multiline: False
+            Button:
+                text: 'Add Movie'
+                on_release: app.clear_status_text()
+            Button:
+                text: 'Clear'
+                on_release: app.clear_status_text()
+
+        BoxLayout:
+            # this layout is populated with (button) widgets in app code
+            id: entries_box
+            orientation: 'vertical'
+            Label:
+                size_hint_y: 0.4
+                text: app.status_text

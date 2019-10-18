@@ -23,7 +23,9 @@ class MoviesToWatchApp(App):
         super().__init__(**kwargs)
         self.movies = [Movie("Castaway", 1990, "Drama", True),
                        Movie("Star Wars", 2002, "Action", False),
-                       Movie("King Kong", 2010, "Thriller", False)]
+                       Movie("King Kong", 2010, "Thriller", False),
+                       Movie("Castaway", 1990, "Drama", True),
+                       Movie("Castaway", 1990, "Drama", True),]
 
     def build(self):
         self.title = "Movies To Watch 2.0 - by Jonache Hilton"
