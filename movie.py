@@ -9,7 +9,11 @@ class Movie:
         self.is_watched = is_watched
 
     def __str__(self):
-        return "{} ({}) from {}. Watched: {}".format(self.title, self.category, self.year, self.is_watched)
+        if self.is_watched:
+            watched_string = "watched"
+        else:
+            watched_string = ""
+        return "{} ({} from {}) {}".format(self.title, self.category, self.year, watched_string)
 
     def watch(self):
         self.is_watched = True
