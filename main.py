@@ -25,6 +25,7 @@ class MoviesToWatchApp(App):
                        Movie("Star Wars", 2002, "Action", False),
                        Movie("King Kong", 2010, "Thriller", False),
                        Movie("Castaway", 1990, "Drama", True),
+                       Movie("Castaway", 1990, "Drama", True),
                        Movie("Castaway", 1990, "Drama", True),]
 
     def build(self):

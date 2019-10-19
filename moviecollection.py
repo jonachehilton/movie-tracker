@@ -34,14 +34,14 @@ class MovieCollection:
     def get_number_of_watched_movies(self):
         count_of_watched_movies = 0
         for movie in self.movies:
-            if not movie.is_watched:
+            if movie.is_watched:
                 count_of_watched_movies += 1
         return count_of_watched_movies
 
     def get_number_of_required_movies(self):
         count_of_required_movies = 0
         for movie in self.movies:
-            if movie.is_watched:
+            if not movie.is_watched:
                 count_of_required_movies += 1
         return count_of_required_movies
 
