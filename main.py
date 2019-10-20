@@ -11,8 +11,10 @@ from kivy.uix.button import Button
 from kivy.properties import StringProperty
 from movie import Movie
 
-
 # from moviecollection import MovieCollection
+
+GREEN_COLOUR = 0.08235294117, 1, 0, 1
+RED_COLOUR = 1, 0, 0.18431372549, 1
 
 
 class MoviesToWatchApp(App):
@@ -43,23 +45,25 @@ class MoviesToWatchApp(App):
             # Store a reference to the guitar object in the button object
             temp_button.movie = movie
             self.root.ids.entries_box.add_widget(temp_button)
-            if (movie.is_watched):
-                temp_button.background_color = (0, 1, 0, 1)
+            if movie.is_watched:
+                temp_button.background_color = GREEN_COLOUR
             else:
-                temp_button.background_color = (1, 0, 0, 1)
+                temp_button.background_color = RED_COLOUR
 
     def press_movie(self, instance):
         """"""
         # Each button was given its own ".movie" object reference, so we can get it directly
         # Update button text and label
         movie = instance.movie
-        instance.text = str(movie)
-        if not movie.is_watched:
-            movie.watch()
-            watched_string = ""
-        else:
+        if movie.is_watched:
             movie.unwatch()
+            instance.background_color = RED_COLOUR
+            watched_string = "You need to watch"
+        else:
+            movie.watch()
+            instance.background_color = GREEN_COLOUR
             watched_string = "You have watched"
+        instance.text = str(movie)
         self.status_text = "{} {}".format(watched_string, movie.title)
 
     def clear_widgets(self):
