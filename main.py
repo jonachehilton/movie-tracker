@@ -43,6 +43,10 @@ class MoviesToWatchApp(App):
             # Store a reference to the guitar object in the button object
             temp_button.movie = movie
             self.root.ids.entries_box.add_widget(temp_button)
+            if (movie.is_watched):
+                temp_button.background_color = (0, 1, 0, 1)
+            else:
+                temp_button.background_color = (1, 0, 0, 1)
 
     def press_movie(self, instance):
         """"""
