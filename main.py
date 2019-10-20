@@ -9,9 +9,9 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
-from movie import Movie
 
-# from moviecollection import MovieCollection
+
+from moviecollection import MovieCollection
 
 GREEN_COLOUR = 0.08235294117, 1, 0, 1
 RED_COLOUR = 1, 0, 0.18431372549, 1
@@ -23,11 +23,9 @@ class MoviesToWatchApp(App):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.movies = [Movie("Castaway", 1990, "Drama", True),
-                       Movie("Star Wars", 2002, "Action", False),
-                       Movie("King Kong", 2010, "Thriller", False),
-                       Movie("Castaway", 1990, "Drama", True),
-                       Movie("Castaway", 1990, "Drama", True)]
+        movie_collection = MovieCollection()
+        movie_collection.load_movies("movies.csv")
+        self.movies = movie_collection.movies
 
     def build(self):
         self.title = "Movies To Watch 2.0 - by Jonache Hilton"
