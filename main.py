@@ -10,7 +10,6 @@ from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
 
-
 from moviecollection import MovieCollection
 
 GREEN_COLOUR = 0.08235294117, 1, 0, 1
@@ -20,12 +19,13 @@ RED_COLOUR = 1, 0, 0.18431372549, 1
 class MoviesToWatchApp(App):
     """..."""
     status_text = StringProperty()
+    watched_status_text = StringProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        movie_collection = MovieCollection()
-        movie_collection.load_movies("movies.csv")
-        self.movies = movie_collection.movies
+        self.movie_collection = MovieCollection()
+        self.movie_collection.load_movies("movies.csv")
+        self.movies = self.movie_collection.movies
 
     def build(self):
         self.title = "Movies To Watch 2.0 - by Jonache Hilton"
@@ -36,6 +36,9 @@ class MoviesToWatchApp(App):
     def create_widgets(self):
         """"""
         self.status_text = ""
+        self.watched_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
+                                                                      get_number_of_required_movies(), self.
+                                                                      movie_collection.get_number_of_watched_movies())
         for movie in self.movies:
             # Create a button for each Movie object, specifying the text
             temp_button = Button(text=str(movie))
@@ -63,6 +66,10 @@ class MoviesToWatchApp(App):
             watched_string = "You have watched"
         instance.text = str(movie)
         self.status_text = "{} {}".format(watched_string, movie.title)
+        self.watched_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
+                                                                      get_number_of_required_movies(),
+                                                                      self.
+                                                                      movie_collection.get_number_of_watched_movies())
 
     def clear_widgets(self):
         """Clear all of the widgets that are children of the "entries_box" layout widget."""
