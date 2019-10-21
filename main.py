@@ -87,7 +87,16 @@ class MoviesToWatchApp(App):
         self.movie_collection.add_movie(movie_to_add)
         for movie in self.movies:
             print(movie)
+        self.clear_fields()
 
+    def clear_fields(self):
+        """
+        Clear the text input fields
+        :return: None
+        """
+        self.root.ids.added_title.text = ""
+        self.root.ids.added_category.text = ""
+        self.root.ids.added_year.text = ""
 
 if __name__ == '__main__':
     MoviesToWatchApp().run()
