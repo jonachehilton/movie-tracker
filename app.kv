@@ -17,30 +17,30 @@ BoxLayout:
             text: 'Title:'
         TextInput:
             id: added_title
-            font_size: 10
             multiline: False
+            write_tab: False
         Label:
             text: 'Category:'
         TextInput:
             id: added_category
-            font_size: 10
             multiline: False
+            write_tab: False
         Label:
             text: 'Year:'
         TextInput:
             id: added_year
-            font_size: 10
             multiline: False
+            write_tab: False
         Button:
             text: 'Add Movie'
             on_release: app.press_add_movie()
         Button:
             text: 'Clear'
-            on_release: app.clear_status_text()
+            on_release: app.clear_bottom_status_text()
     BoxLayout:
         orientation: 'vertical'
         Label:
-            text: app.watched_status_text
+            text: app.top_status_text
             size_hint_y:0.1
         BoxLayout:
             # this layout is populated with (button) widgets in app code
@@ -50,4 +50,4 @@ BoxLayout:
             size_hint_y: 0.1
             orientation: 'vertical'
             Label:
-                text: app.status_text
+                text: app.bottom_status_text

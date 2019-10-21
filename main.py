@@ -19,8 +19,8 @@ RED_COLOUR = 1, 0, 0.18431372549, 1
 
 class MoviesToWatchApp(App):
     """..."""
-    status_text = StringProperty()
-    watched_status_text = StringProperty()
+    bottom_status_text = StringProperty()
+    top_status_text = StringProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -39,15 +39,15 @@ class MoviesToWatchApp(App):
     def create_widgets(self):
         """"""
         self.clear_widgets()
-        self.clear_status_text()
-        self.watched_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
-                                                                      get_number_of_required_movies(), self.
-                                                                      movie_collection.get_number_of_watched_movies())
+        self.clear_bottom_status_text()
+        self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
+                                                                  get_number_of_required_movies(), self.
+                                                                  movie_collection.get_number_of_watched_movies())
         for movie in self.movies:
             # Create a button for each Movie object, specifying the text
             temp_button = Button(text=str(movie))
             temp_button.bind(on_release=self.press_movie)
-            # Store a reference to the guitar object in the button object
+            # Store a reference to the movie object in the button object
             temp_button.movie = movie
             self.root.ids.entries_box.add_widget(temp_button)
             if movie.is_watched:
@@ -69,18 +69,18 @@ class MoviesToWatchApp(App):
             instance.background_color = GREEN_COLOUR
             watched_string = "You have watched"
         instance.text = str(movie)
-        self.status_text = "{} {}".format(watched_string, movie.title)
-        self.watched_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
-                                                                      get_number_of_required_movies(),
-                                                                      self.
-                                                                      movie_collection.get_number_of_watched_movies())
+        self.bottom_status_text = "{} {}".format(watched_string, movie.title)
+        self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
+                                                                  get_number_of_required_movies(),
+                                                                  self.
+                                                                  movie_collection.get_number_of_watched_movies())
 
     def clear_widgets(self):
         """Clear all of the widgets that are children of the "entries_box" layout widget."""
         self.root.ids.entries_box.clear_widgets()
 
-    def clear_status_text(self):
-        self.status_text = ""
+    def clear_bottom_status_text(self):
+        self.bottom_status_text = ""
 
     def press_add_movie(self):
         movie_to_add = Movie(self.root.ids.added_title.text, int(self.root.ids.added_year.text),
@@ -99,6 +99,7 @@ class MoviesToWatchApp(App):
         self.root.ids.added_title.text = ""
         self.root.ids.added_category.text = ""
         self.root.ids.added_year.text = ""
+
 
 if __name__ == '__main__':
     MoviesToWatchApp().run()
