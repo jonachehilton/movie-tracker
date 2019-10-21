@@ -86,12 +86,18 @@ class MoviesToWatchApp(App):
             self.clear_bottom_status_text()
 
     def check_text_input_errors(self):
-        if self.root.ids.added_title.text == "" or self.root.ids.added_year.text == "" or \
-                self.root.ids.added_category.text == "":
-            self.bottom_status_text = "All fields must be completed"
-        else:
-            return True
+        try:
+            if self.root.ids.added_title.text == "" or self.root.ids.added_year.text == "" or \
+                    self.root.ids.added_category.text == "":
+                self.bottom_status_text = "All fields must be completed"
 
+            elif int(self.root.ids.added_year.text) < 0:
+                self.bottom_status_text = "Year must be >= 0"
+
+            else:
+                return True
+        except ValueError:
+            self.bottom_status_text = "Please enter a valid number"
 
     def clear_fields(self):
         """
