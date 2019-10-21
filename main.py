@@ -75,21 +75,23 @@ class MoviesToWatchApp(App):
                                                                   self.
                                                                   movie_collection.get_number_of_watched_movies())
 
-    def clear_widgets(self):
-        """Clear all of the widgets that are children of the "entries_box" layout widget."""
-        self.root.ids.entries_box.clear_widgets()
-
-    def clear_bottom_status_text(self):
-        self.bottom_status_text = ""
-
     def press_add_movie(self):
-        movie_to_add = Movie(self.root.ids.added_title.text, int(self.root.ids.added_year.text),
-                             self.root.ids.added_category.text, False)
-        self.movie_collection.add_movie(movie_to_add)
-        for movie in self.movies:
-            print(movie)
-        self.clear_fields()
-        self.create_widgets()
+        is_valid_input = self.check_text_input_errors()
+        if is_valid_input:
+            movie_to_add = Movie(self.root.ids.added_title.text, int(self.root.ids.added_year.text),
+                                 self.root.ids.added_category.text.title(), False)
+            self.movie_collection.add_movie(movie_to_add)
+            self.clear_fields()
+            self.create_widgets()
+            self.clear_bottom_status_text()
+
+    def check_text_input_errors(self):
+        if self.root.ids.added_title.text == "" or self.root.ids.added_year.text == "" or \
+                self.root.ids.added_category.text == "":
+            self.bottom_status_text = "All fields must be completed"
+        else:
+            return True
+
 
     def clear_fields(self):
         """
@@ -99,6 +101,13 @@ class MoviesToWatchApp(App):
         self.root.ids.added_title.text = ""
         self.root.ids.added_category.text = ""
         self.root.ids.added_year.text = ""
+
+    def clear_widgets(self):
+        """Clear all of the widgets that are children of the "entries_box" layout widget."""
+        self.root.ids.entries_box.clear_widgets()
+
+    def clear_bottom_status_text(self):
+        self.bottom_status_text = ""
 
 
 if __name__ == '__main__':
