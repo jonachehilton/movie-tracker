@@ -10,6 +10,7 @@ from kivy.lang import Builder
 from kivy.uix.button import Button
 from kivy.properties import StringProperty
 
+from movie import Movie
 from moviecollection import MovieCollection
 
 GREEN_COLOUR = 0.08235294117, 1, 0, 1
@@ -26,6 +27,8 @@ class MoviesToWatchApp(App):
         self.movie_collection = MovieCollection()
         self.movie_collection.load_movies("movies.csv")
         self.movies = self.movie_collection.movies
+        self.sorted_by = "Alphabetical"
+        self.sorted_keys = {}
 
     def build(self):
         self.title = "Movies To Watch 2.0 - by Jonache Hilton"
@@ -77,6 +80,13 @@ class MoviesToWatchApp(App):
 
     def clear_status_text(self):
         self.status_text = ""
+
+    def press_add_movie(self):
+        movie_to_add = Movie(self.root.ids.added_title.text, int(self.root.ids.added_year.text),
+                             self.root.ids.added_category.text, False)
+        self.movie_collection.add_movie(movie_to_add)
+        for movie in self.movies:
+            print(movie)
 
 
 if __name__ == '__main__':

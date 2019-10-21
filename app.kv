@@ -6,30 +6,34 @@ BoxLayout:
         Label:
             text: 'Sort by:'
         Spinner:
-            text: 'hello'
+            id: sort_by
+            text: "Alphabetical"
+            values: ("Alphabetical", "Completion Status")
+            on_text: app.sort_items(self.text)
         Label:
             text: 'Add New Movie...'
         Label:
+
             text: 'Title:'
         TextInput:
-            id: 'title'
+            id: added_title
             font_size: 10
             multiline: False
         Label:
             text: 'Category:'
         TextInput:
-            id: 'category'
+            id: added_category
             font_size: 10
             multiline: False
         Label:
             text: 'Year:'
         TextInput:
-            id: 'year'
+            id: added_year
             font_size: 10
             multiline: False
         Button:
             text: 'Add Movie'
-            on_release: app.clear_status_text()
+            on_release: app.press_add_movie()
         Button:
             text: 'Clear'
             on_release: app.clear_status_text()
