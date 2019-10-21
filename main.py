@@ -94,6 +94,10 @@ class MoviesToWatchApp(App):
             elif int(self.root.ids.added_year.text) < 0:
                 self.bottom_status_text = "Year must be >= 0"
 
+            elif self.root.ids.added_category.text.title() not in ["Action", "Comedy", "Documentary", "Drama",
+                                                                   "Fantasy", "Thriller"]:
+                self.bottom_status_text = "The category must be one of the following: Action, Comedy, Documentary," \
+                                          " Drama, Fantasy, Thriller"
             else:
                 return True
         except ValueError:
