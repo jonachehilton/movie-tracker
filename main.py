@@ -38,7 +38,8 @@ class MoviesToWatchApp(App):
 
     def create_widgets(self):
         """"""
-        self.status_text = ""
+        self.clear_widgets()
+        self.clear_status_text()
         self.watched_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
                                                                       get_number_of_required_movies(), self.
                                                                       movie_collection.get_number_of_watched_movies())
@@ -88,6 +89,7 @@ class MoviesToWatchApp(App):
         for movie in self.movies:
             print(movie)
         self.clear_fields()
+        self.create_widgets()
 
     def clear_fields(self):
         """
