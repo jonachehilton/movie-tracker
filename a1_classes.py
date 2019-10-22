@@ -68,7 +68,7 @@ def display_list(movies, width, movie_collection):
         print("{:2}. {} {:{}} -  {:>4} ({})".format(i, star_value, movies[i].title, width, movies[i].year,
                                                     movies[i].category))
     print("{} movies watched, {} movies still to watch".format(movie_collection.get_number_of_watched_movies(),
-                                                               movie_collection.get_number_of_required_movies()))
+                                                               movie_collection.get_number_of_unwatched_movies()))
 
 
 def calculate_dynamic_width(movies):

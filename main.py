@@ -27,13 +27,12 @@ class MoviesToWatchApp(App):
         self.movie_collection = MovieCollection()
         self.movie_collection.load_movies("movies.csv")
         self.movies = self.movie_collection.movies
-        self.sorted_by = "Alphabetical"
-        self.sorted_keys = {}
+        self.sorted_by = "Category"
 
     def build(self):
         self.title = "Movies To Watch 2.0 - by Jonache Hilton"
         self.root = Builder.load_file('app.kv')
-        self.create_widgets()
+        self.sort_movies(self.sorted_by)
         return self.root
 
     def create_widgets(self):
@@ -41,7 +40,7 @@ class MoviesToWatchApp(App):
         self.clear_widgets()
         self.clear_bottom_status_text()
         self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
-                                                                  get_number_of_required_movies(), self.
+                                                                  get_number_of_unwatched_movies(), self.
                                                                   movie_collection.get_number_of_watched_movies())
         for movie in self.movies:
             # Create a button for each Movie object, specifying the text
@@ -69,9 +68,10 @@ class MoviesToWatchApp(App):
             instance.background_color = GREEN_COLOUR
             watched_string = "You have watched"
         instance.text = str(movie)
+        self.sort_movies(self.sorted_by)
         self.bottom_status_text = "{} {}".format(watched_string, movie.title)
         self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
-                                                                  get_number_of_required_movies(),
+                                                                  get_number_of_unwatched_movies(),
                                                                   self.
                                                                   movie_collection.get_number_of_watched_movies())
 
@@ -82,7 +82,7 @@ class MoviesToWatchApp(App):
                                  self.root.ids.added_category.text.title(), False)
             self.movie_collection.add_movie(movie_to_add)
             self.clear_fields()
-            self.create_widgets()
+            self.sort_movies(self.sorted_by)
             self.clear_bottom_status_text()
 
     def check_text_input_errors(self):
@@ -102,6 +102,18 @@ class MoviesToWatchApp(App):
                 return True
         except ValueError:
             self.bottom_status_text = "Please enter a valid number"
+
+    def sort_movies(self, sorted_by):
+        self.sorted_by = sorted_by
+        if sorted_by == "Category":
+            self.movie_collection.sort("category")
+        elif sorted_by == "Title":
+            self.movie_collection.sort("title")
+        elif sorted_by == "Year":
+            self.movie_collection.sort("year")
+        else:
+            self.movie_collection.sort("is_watched")
+        self.create_widgets()
 
     def clear_fields(self):
         """

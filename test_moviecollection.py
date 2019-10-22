@@ -44,7 +44,7 @@ def run_tests():
     print(movie_collection.get_number_of_watched_movies())
 
     print("Test getting number of unwatched movies:")
-    print(movie_collection.get_number_of_required_movies())
+    print(movie_collection.get_number_of_unwatched_movies())
 
     print("Test saving movies (check file):")
     movie_collection.save_movies("movies.csv")

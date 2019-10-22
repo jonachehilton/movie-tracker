@@ -7,8 +7,8 @@ BoxLayout:
             text: 'Sort by:'
         Spinner:
             id: sort_by
-            text: "Alphabetical"
-            values: ("Alphabetical", "Completion Status")
+            text: "Category"
+            values: ("Category", "Title", "Year", "Watched")
             on_text: app.sort_items(self.text)
         Label:
             text: 'Add New Movie...'
