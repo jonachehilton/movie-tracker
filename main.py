@@ -37,7 +37,7 @@ class MoviesToWatchApp(App):
 
     def create_widgets(self):
         """"""
-        self.clear_widgets()
+        self.clear_movie_widgets()
         self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
                                                                   get_number_of_unwatched_movies(), self.
                                                                   movie_collection.get_number_of_watched_movies())
@@ -89,14 +89,17 @@ class MoviesToWatchApp(App):
             if self.root.ids.added_title.text == "" or self.root.ids.added_year.text == "" or \
                     self.root.ids.added_category.text == "":
                 self.bottom_status_text = "All fields must be completed"
+                return False
 
             elif int(self.root.ids.added_year.text) < 0:
                 self.bottom_status_text = "Year must be >= 0"
+                return False
 
             elif self.root.ids.added_category.text.title() not in ["Action", "Comedy", "Documentary", "Drama",
                                                                    "Fantasy", "Thriller"]:
                 self.bottom_status_text = "The category must be one of the following: Action, Comedy, Documentary," \
                                           " Drama, Fantasy, Thriller"
+                return False
             else:
                 return True
         except ValueError:
@@ -123,7 +126,7 @@ class MoviesToWatchApp(App):
         self.root.ids.added_category.text = ""
         self.root.ids.added_year.text = ""
 
-    def clear_widgets(self):
+    def clear_movie_widgets(self):
         """Clear all of the widgets that are children of the "entries_box" layout widget."""
         self.root.ids.entries_box.clear_widgets()
 
