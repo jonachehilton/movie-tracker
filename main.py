@@ -26,7 +26,6 @@ class MoviesToWatchApp(App):
         super().__init__(**kwargs)
         self.movie_collection = MovieCollection()
         self.movie_collection.load_movies("movies.csv")
-        self.movies = self.movie_collection.movies
         self.sorted_by = "Category"
 
     def build(self):
@@ -41,7 +40,7 @@ class MoviesToWatchApp(App):
         self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
                                                                   get_number_of_unwatched_movies(), self.
                                                                   movie_collection.get_number_of_watched_movies())
-        for movie in self.movies:
+        for movie in self.movie_collection.movies:
             # Create a button for each Movie object, specifying the text
             temp_button = Button(text=str(movie))
             temp_button.bind(on_release=self.press_movie)
