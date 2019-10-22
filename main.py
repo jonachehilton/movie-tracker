@@ -38,7 +38,6 @@ class MoviesToWatchApp(App):
     def create_widgets(self):
         """"""
         self.clear_widgets()
-        self.clear_bottom_status_text()
         self.top_status_text = "To watch: {}. Watched: {}".format(self.movie_collection.
                                                                   get_number_of_unwatched_movies(), self.
                                                                   movie_collection.get_number_of_watched_movies())
