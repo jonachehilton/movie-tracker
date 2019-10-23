@@ -132,6 +132,8 @@ class MoviesToWatchApp(App):
     def clear_bottom_status_text(self):
         self.bottom_status_text = ""
 
+    def on_stop(self):
+        self.movie_collection.save_movies("movies.csv")
 
 if __name__ == '__main__':
     MoviesToWatchApp().run()
