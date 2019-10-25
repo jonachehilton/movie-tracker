@@ -6,6 +6,8 @@ from moviecollection import MovieCollection
 
 def main():
     """
+    Contains a menu with four capabilities; displaying a movie list, adding to the movie list,
+    watching a movie from the list and quitting the program.
     """
     MENU = "Menu:\nL - List movies\nA - Add new movie\nW - Watch a movie\nQ - Quit"
 
