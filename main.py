@@ -67,8 +67,7 @@ class MoviesToWatchApp(App):
         :param instance: the Kivy button instance
         :return: None
         """
-        # Each button was given its own ".movie" object reference, so we can get it directly
-
+        # Each button is given its own ".movie" object reference, to get it directly
         movie = instance.movie
         if movie.is_watched:
             movie.unwatch()
@@ -86,6 +85,7 @@ class MoviesToWatchApp(App):
         Handle pressing add movie button, adding Movie object to list and updating display.
         :return: None
         """
+        # Check if any errors occur before continuing
         is_valid_input = self.check_text_input_errors()
         if is_valid_input:
             movie_to_add = Movie(self.root.ids.title_input.text, int(self.root.ids.year_input.text),
@@ -98,6 +98,7 @@ class MoviesToWatchApp(App):
     def check_text_input_errors(self):
         """Check text inputs for a range of errors and returns True if no errors have occurred."""
         try:
+            # Check if any of the text inputs are blank
             if self.root.ids.title_input.text == "" or self.root.ids.year_input.text == "" or \
                     self.root.ids.category_input.text == "":
                 self.bottom_status_text = "All fields must be completed"
@@ -124,6 +125,7 @@ class MoviesToWatchApp(App):
         :return: None
         """
         self.sorted_by = sorted_by.lower()
+        # Convert "watched" to "is_watched" as "watched" is not a valid for attrgetter
         if self.sorted_by == "watched":
             self.sorted_by = "is_watched"
         self.movie_collection.sort(self.sorted_by)
