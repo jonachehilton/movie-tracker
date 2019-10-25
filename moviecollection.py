@@ -26,7 +26,8 @@ class MovieCollection:
         movie_file = open(file_name, "r")
         for i, line in enumerate(movie_file):
             movie_to_add = line.strip().split(",")
-            self.movies.append(Movie(movie_to_add[0], movie_to_add[1], movie_to_add[2], movie_to_add[3]))
+            self.add_movie(Movie(movie_to_add[0], movie_to_add[1], movie_to_add[2], movie_to_add[3]))
+            # Convert "w" and "u" to boolean values
             if self.movies[i].is_watched == "w":
                 self.movies[i].is_watched = True
             else:
