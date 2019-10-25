@@ -61,6 +61,7 @@ class MovieCollection:
         """Save movies from list attribute into a file."""
         movie_file = open(file_name, "w")
         for i, movie in enumerate(self.movies):
+            # Convert boolean values back to "w" and "u"
             if self.movies[i].is_watched:
                 self.movies[i].is_watched = "w"
             else:
