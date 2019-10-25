@@ -72,7 +72,7 @@ def display_list(movies, width, movie_collection):
 
 
 def calculate_dynamic_width(movies):
-    """Returns the length of the longest movie name in the movie list."""
+    """Return the length of the longest movie name in the movie list."""
     dynamic_width = 0
     for movie in movies:
         current_width = len(str(movie.title))
@@ -82,7 +82,7 @@ def calculate_dynamic_width(movies):
 
 
 def check_string_error(string):
-    """Determines whether a string is empty or not."""
+    """Determine whether a string is empty or not."""
     if string == "":
         print("Input can not be blank")
         return False

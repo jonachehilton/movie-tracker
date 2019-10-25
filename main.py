@@ -99,10 +99,11 @@ class MoviesToWatchApp(App):
                 self.bottom_status_text = "The category must be one of the following: Action, Comedy, Documentary," \
                                           " Drama, Fantasy, Thriller"
                 return False
-            else:
-                return True
         except ValueError:
             self.bottom_status_text = "Please enter a valid number"
+
+        else:
+            return True
 
     def sort_movies(self, sorted_by):
         self.sorted_by = sorted_by
