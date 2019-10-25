@@ -23,9 +23,9 @@ class Movie:
         return "{} ({} from {}) {}".format(self.title, self.category, self.year, watched_string)
 
     def watch(self):
-        """Change the watched status to True for a Movie object"""
+        """Change the watched status to True for a Movie object."""
         self.is_watched = True
 
     def unwatch(self):
-        """Change the watched status to False for a Movie object"""
+        """Change the watched status to False for a Movie object."""
         self.is_watched = False
