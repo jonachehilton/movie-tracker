@@ -33,4 +33,6 @@ def run_tests():
 
     test_movie.unwatch()
     print("{} unwatch() - Expected False. Got {}".format(test_movie, test_movie.is_watched))
+
+
 run_tests()
