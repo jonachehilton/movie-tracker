@@ -74,8 +74,8 @@ class MoviesToWatchApp(App):
     def press_add_movie(self):
         is_valid_input = self.check_text_input_errors()
         if is_valid_input:
-            movie_to_add = Movie(self.root.ids.added_title.text, int(self.root.ids.added_year.text),
-                                 self.root.ids.added_category.text.title(), False)
+            movie_to_add = Movie(self.root.ids.title_input.text, int(self.root.ids.year_input.text),
+                                 self.root.ids.category_input.text.title(), False)
             self.movie_collection.add_movie(movie_to_add)
             self.clear_fields()
             self.sort_movies(self.sorted_by)
@@ -83,23 +83,22 @@ class MoviesToWatchApp(App):
 
     def check_text_input_errors(self):
         try:
-            if self.root.ids.added_title.text == "" or self.root.ids.added_year.text == "" or \
-                    self.root.ids.added_category.text == "":
+            if self.root.ids.title_input.text == "" or self.root.ids.year_input.text == "" or \
+                    self.root.ids.category_input.text == "":
                 self.bottom_status_text = "All fields must be completed"
                 return False
 
-            elif int(self.root.ids.added_year.text) < 0:
+            elif int(self.root.ids.year_input.text) < 0:
                 self.bottom_status_text = "Year must be >= 0"
                 return False
 
-            elif self.root.ids.added_category.text.title() not in ["Action", "Comedy", "Documentary", "Drama",
+            elif self.root.ids.category_input.text.title() not in ["Action", "Comedy", "Documentary", "Drama",
                                                                    "Fantasy", "Thriller"]:
                 self.bottom_status_text = "The category must be one of the following: Action, Comedy, Documentary," \
                                           " Drama, Fantasy, Thriller"
                 return False
         except ValueError:
             self.bottom_status_text = "Please enter a valid number"
-
         else:
             return True
 
@@ -120,9 +119,9 @@ class MoviesToWatchApp(App):
         Clear the text input fields
         :return: None
         """
-        self.root.ids.added_title.text = ""
-        self.root.ids.added_category.text = ""
-        self.root.ids.added_year.text = ""
+        self.root.ids.title_input.text = ""
+        self.root.ids.category_input.text = ""
+        self.root.ids.year_input.text = ""
 
     def clear_movie_widgets(self):
         """Clear all of the widgets that are children of the "entries_box" layout widget."""
