@@ -59,11 +59,9 @@ class MoviesToWatchApp(App):
         movie = instance.movie
         if movie.is_watched:
             movie.unwatch()
-            instance.background_color = RED_COLOUR
             watched_string = "You need to watch"
         else:
             movie.watch()
-            instance.background_color = GREEN_COLOUR
             watched_string = "You have watched"
         instance.text = str(movie)
         self.sort_movies(self.sorted_by)
@@ -135,6 +133,7 @@ class MoviesToWatchApp(App):
 
     def on_stop(self):
         self.movie_collection.save_movies("movies.csv")
+
 
 if __name__ == '__main__':
     MoviesToWatchApp().run()

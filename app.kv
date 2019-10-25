@@ -2,7 +2,7 @@ BoxLayout:
     orientation: 'horizontal'
     BoxLayout:
         orientation: 'vertical'
-        size_hint_x: 0.25
+        size_hint_x: 0.3
         Label:
             text: 'Sort by:'
         Spinner:
@@ -10,45 +10,54 @@ BoxLayout:
             text: "Category"
             values: ("Category", "Title", "Year", "Watched")
             on_text: app.sort_movies(self.text)
+            size_hint_y: 0.9
         Label:
             text: 'Add New Movie...'
+            size_hint_y: 1.5
         Label:
-
             text: 'Title:'
+            size_hint_y: 0.7
         TextInput:
             id: added_title
             multiline: False
             write_tab: False
+            size_hint_y: 0.7
         Label:
             text: 'Category:'
+            size_hint_y: 0.7
         TextInput:
             id: added_category
             multiline: False
             write_tab: False
+            size_hint_y: 0.7
         Label:
             text: 'Year:'
+            size_hint_y: 0.7
         TextInput:
             id: added_year
             multiline: False
             write_tab: False
+            size_hint_y: 0.7
         Button:
             text: 'Add Movie'
             on_release: app.press_add_movie()
+            size_hint_y: 0.7
         Button:
             text: 'Clear'
             on_release: app.clear_bottom_status_text()
             on_release: app.clear_fields()
+            size_hint_y: 0.7
     BoxLayout:
         orientation: 'vertical'
         Label:
             text: app.top_status_text
-            size_hint_y:0.09
+            size_hint_y:0.12
         BoxLayout:
             # this layout is populated with (button) widgets in app code
             id: entries_box
             orientation: 'vertical'
         BoxLayout:
-            size_hint_y: 0.12
+            size_hint_y: 0.1
             orientation: 'vertical'
             Label:
                 text: app.bottom_status_text
